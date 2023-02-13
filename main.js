@@ -1,6 +1,6 @@
 document.querySelector("#app").innerHTML = `
   <div>
-    <canvas id="canvas" width="720" height="960">Color Grid</canvas>
+    <canvas id="canvas" width="5760" height="7680">Color Grid</canvas>
   </div>
 `;
 
@@ -12,17 +12,22 @@ const saturation = [];
 const luminance = [];
 
 let i = 0;
-while (i < 12) {
-  hue.push(30 * i);
+while (i < 48) {
+  hue.push(Math.floor(8 * i));
   i++;
 }
 console.log(hue);
 
 let j = 1;
-while (j < 11) {
-  saturation.push(10 * j);
-  luminance.push(10 * j);
+while (j < 6) {
+  saturation.push(20 * j);
   j++;
+}
+
+let k = 1;
+while (k < 6) {
+  luminance.push(17 * k - 5);
+  k++;
 }
 console.log(saturation);
 console.log(luminance);
@@ -36,22 +41,22 @@ for (let h = 0; h < hue.length; h++) {
   for (let s = 0; s < saturation.length; s++) {
     for (let l = 0; l < luminance.length; l++) {
       ctx.fillStyle = `hsl(${hue[h]}, ${saturation[s]}%, ${luminance[l]}%)`;
-      ctx.fillRect(x * 240 + x1, y * 240 + y1, 24, 24);
-      if (x1 < 240 - 24) {
-        x1 += 24;
+      ctx.fillRect(x * 960 + x1, y * 960 + y1, 192, 192);
+      if (x1 < 960 - 192) {
+        x1 += 192;
       } else {
         x1 = 0;
-        y1 += 24;
+        y1 += 192;
       }
     }
   }
   x1 = 0;
   y1 = 0;
-  if (x < 2) {
+  if (x < 5) {
     x++;
   } else {
     x = 0;
-    y++;
+    y += 1;
   }
 }
 
